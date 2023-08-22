@@ -19,34 +19,35 @@ const UserWidget = ({ userId, friend, picturePath }) => {
   const dark = palette.neutral.dark;
   const medium = palette.neutral.medium;
   const main = palette.neutral.main;
-  // const [length, setLength] = useState("")
-  // const getUser = async () => {
-  //   const response = await fetch(`${process.env.REACT_APP_BACKEND}/users/${userId}`, {
-  //     method: "GET",
-  //     headers: { Authorization: `Bearer ${token}` },
-  //   });
-  //   const data = await response.json();
-  //   setUser(data);
-  // };
-  
-  
-  // useEffect(() => {
-  //   getUser();
-    
-  // }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  // if (!user) {
-  //   return null;
-  // }
-
   const {
     
     username,
     viewedProfile,
     impressions,
-   
+   friends
   } = useSelector((state) => state.user);
-  const length = Object.keys(friend).length;
+  // const [length, setLength] = useState("")
+  const getUser = async () => {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND}/users/${userId}`, {
+      method: "GET",
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const data = await response.json();
+    setUser(data);
+  };
+  
+  
+  useEffect(() => {
+    getUser();
+    
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  if (!user) {
+    return null;
+  }
+
+  
+  const length = Object.keys(friends).length;
   return (
     <WidgetWrapper>
       {/* FIRST ROW */}
