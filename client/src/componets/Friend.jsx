@@ -26,7 +26,7 @@ const Friend = ({ friendId, name, userPicturePath }) => {
   const patchFriend = async () => {
    
     const response = await fetch(
-      `http://localhost:3001/users/${_id}/${friendId}`,
+      `${process.env.REACT_APP_BACKEND}/users/${_id}/${friendId}`,
       {
         method: "PATCH",
         headers: {
